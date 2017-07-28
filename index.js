@@ -6,8 +6,8 @@ const bodyParser = require('body-parser')
 const app = express()
 
 const products = [
-	{ id: 1, name: 'NOR810', sku: 'nor810' },
-	{ id: 2, name: 'NOR820', sku: 'nor820' }
+  { id: 1, name: 'NOR810', sku: 'nor810' },
+  { id: 2, name: 'NOR820', sku: 'nor820' }
 ]
 
 const typeDefs = `
@@ -23,23 +23,23 @@ const typeDefs = `
 `
 
 const resolvers = {
-	Query: {
-		allProducts: () => products
-	}
+  Query: {
+    allProducts: () => products
+  }
 }
 
 const schema = makeExecutableSchema({
-	typeDefs,
-	resolvers
+  typeDefs,
+  resolvers
 })
 
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }))
 
 app.use(
-	'/graphiql',
-	graphiqlExpress({
-		endpointURL: '/graphql'
-	})
+  '/graphiql',
+  graphiqlExpress({
+    endpointURL: '/graphql'
+  })
 )
 
 app.listen(4000)
